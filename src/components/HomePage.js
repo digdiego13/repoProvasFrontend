@@ -1,19 +1,29 @@
-
-import LogoComponent from "../shared/sharedComponents/LogoComponent";
-import styled from "styled-components";
-import { GenericButtonStyled, ContainerCenter } from "../shared/sharedStyles/sharedStyles";
-import { Link } from "react-router-dom";
+import LogoComponent from '../shared/sharedComponents/LogoComponent';
+import styled from 'styled-components';
+import {
+  GenericButtonStyled,
+  ContainerCenter,
+} from '../shared/sharedStyles/sharedStyles';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
-    
     <ContainerCenter>
       <LogoComponent width={'200px'}></LogoComponent>
       <FlexStyle>
-        <Link to={'/inserirprova'}><GenericButtonStyled>Inserir Prova</GenericButtonStyled></Link>
-        <Link to={'/inserirprova'}><GenericButtonStyled>Todas as Provas</GenericButtonStyled></Link>
+        <Link to={'/inserirprova'}>
+          <GenericButtonStyled>Inserir Prova</GenericButtonStyled>
+        </Link>
+        <div>
+          <Link to={'/inserirprovaprof'}>
+            <GenericButtonStyled>Todas as Provas</GenericButtonStyled>
+            <Link to={'/inserirprovadis'}>
+              <GenericButtonStyled>Todas as Provas</GenericButtonStyled>
+            </Link>
+          </Link>
+        </div>
       </FlexStyle>
-      </ContainerCenter>
+    </ContainerCenter>
   );
 }
 
@@ -23,6 +33,4 @@ const FlexStyle = styled.div`
   align-items: center;
   width: 50%;
   margin-top: 100px;
-
-`
-
+`;

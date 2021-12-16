@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { BiCheckCircle } from 'react-icons/bi';
 
 const GenericButtonStyled = styled.button`
   background-color: #8c97ea;
@@ -16,15 +17,29 @@ const GenericButtonStyled = styled.button`
 `;
 
 const ContainerCenter = styled.div`
-     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    margin: auto;
-`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+`;
 
-export {
-    GenericButtonStyled,
-    ContainerCenter
-}
+const CheckStuff = styled.div`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
 
+  button {
+    background-color: none;
+    border: none;
+  }
+`;
+
+const CheckIconStyled = styled(BiCheckCircle)`
+  font-size: 15px;
+  height: 20px;
+  width: 20px;
+  color: ${(props) => props.checked};
+`;
+
+export { GenericButtonStyled, ContainerCenter, CheckIconStyled, CheckStuff };

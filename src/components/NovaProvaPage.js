@@ -1,34 +1,105 @@
-import imagemInicial from '../shared/images/logo.jpg';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { BiCheckCircle } from 'react-icons/bi';
-import { GenericButtonStyled } from '../shared/sharedStyles/sharedStyles';
+import { useState, useEffect } from 'react';
+import {
+  GenericButtonStyled,
+  CheckStuff,
+  CheckIconStyled,
+} from '../shared/sharedStyles/sharedStyles';
+import {
+  getDisciplinas,
+  getProfessoresDasDisciplinas,
+  postProva,
+} from '../service';
+import CheckContainer from '../shared/sharedComponents/checkStuff';
+import { useHistory } from 'react-router';
 
 export default function NovaProvaPage() {
   const [prova, setProva] = useState({});
+  const [disciplinasList, setDisciplinasList] = useState([]);
+  const [professoresList, setProfessoresList] = useState([]);
+  const [bodyProva, setBodyProva] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    getDisciplinas()
+      .then((res) => {
+        setDisciplinasList(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log('algo de errado com o servidor');
+      });
+  }, []);
 
   function enviarProva(event) {
     event.preventDefault();
-    console.log(prova);
+    console.log(bodyProva);
+    postProva(bodyProva)
+      .then((res) => {
+        alert('inseriu nova prova');
+        history.push('/');
+      })
+      .catch((err) => console.log(err.message));
   }
 
   function selectType(type) {
     if (prova.categoria !== '') {
       setProva({ ...prova, categoria: '' });
     }
-    setProva({ ...prova, categoria: type });
+    if (type === 'P1') {
+      setProva({ ...prova, categoria: 1 });
+      setBodyProva({ ...bodyProva, categoriasId: 1 });
+    }
+    if (type === 'P2') {
+      setProva({ ...prova, categoria: 2 });
+      setBodyProva({ ...bodyProva, categoriasId: 2 });
+    }
+    if (type === 'P3') {
+      setProva({ ...prova, categoria: 3 });
+      setBodyProva({ ...bodyProva, categoriasId: 3 });
+    }
+    if (type === '2ch') {
+      setProva({ ...prova, categoria: 4 });
+      setBodyProva({ ...bodyProva, categoriasId: 4 });
+    }
+    if (type === 'Outros') {
+      setProva({ ...prova, categoria: 5 });
+      setBodyProva({ ...bodyProva, categoriasId: 5 });
+    }
   }
   function selectDisciplina(type) {
+    console.log(prova);
     if (prova.disciplina !== '') {
       setProva({ ...prova, disciplina: '' });
     }
     setProva({ ...prova, disciplina: type });
+    let disciplinaEscolhida = disciplinasList.find(
+      (disciplina) => disciplina.nomeDisciplina === type,
+    );
+
+    setBodyProva({ ...bodyProva, disciplinaId: disciplinaEscolhida.id });
+
+    const body = {
+      id: disciplinaEscolhida.id,
+    };
+    console.log(body);
+    getProfessoresDasDisciplinas(body)
+      .then((res) => {
+        setProfessoresList(res.data);
+      })
+      .catch((err) => console.log(err));
   }
   function selectProfessor(type) {
     if (prova.professor !== '') {
       setProva({ ...prova, professor: '' });
     }
     setProva({ ...prova, professor: type });
+    console.log(professoresList);
+    let professorEscolhido = professoresList.find(
+      (professor) => professor.professores.nomeProfessor === type,
+    );
+    console.log(professorEscolhido);
+    setBodyProva({ ...bodyProva, professorId: professorEscolhido.id });
   }
 
   return (
@@ -37,8 +108,10 @@ export default function NovaProvaPage() {
       <SignUpOrLoginInputStyled
         type="Nomeprova"
         placeholder="Titulo da prova"
-        value={prova.nome}
-        onChange={(e) => setProva({ ...prova, nome: e.target.value })}
+        value={bodyProva.nomeProva}
+        onChange={(e) =>
+          setBodyProva({ ...bodyProva, nomeProva: e.target.value })
+        }
         required
       />
       <BoxStyled>
@@ -49,16 +122,37 @@ export default function NovaProvaPage() {
         <CheckStuff>
           <CheckIconStyled
             onClick={() => selectType('P1')}
-            checked={() => (prova.categoria === 'P1' ? 'green' : '')}
+            checked={() => (prova.categoria === 1 ? 'green' : '')}
           ></CheckIconStyled>
           <p>P1</p>
         </CheckStuff>
         <CheckStuff>
           <CheckIconStyled
             onClick={() => selectType('P2')}
-            checked={() => (prova.categoria === 'P2' ? 'green' : '')}
+            checked={() => (prova.categoria === 2 ? 'green' : '')}
           ></CheckIconStyled>
           <p>P2</p>
+        </CheckStuff>
+        <CheckStuff>
+          <CheckIconStyled
+            onClick={() => selectType('P3')}
+            checked={() => (prova.categoria === 3 ? 'green' : '')}
+          ></CheckIconStyled>
+          <p>P3</p>
+        </CheckStuff>
+        <CheckStuff>
+          <CheckIconStyled
+            onClick={() => selectType('2ch')}
+            checked={() => (prova.categoria === 4 ? 'green' : '')}
+          ></CheckIconStyled>
+          <p>2ch</p>
+        </CheckStuff>
+        <CheckStuff>
+          <CheckIconStyled
+            onClick={() => selectType('Outros')}
+            checked={() => (prova.categoria === 5 ? 'green' : '')}
+          ></CheckIconStyled>
+          <p>Outros</p>
         </CheckStuff>
       </BoxStyled>
       <BoxStyled>
@@ -66,46 +160,42 @@ export default function NovaProvaPage() {
           <p>Disciplina</p>
           <p>👇🏽</p>
         </summary>
-        <CheckStuff>
-          <CheckIconStyled
-            onClick={() => selectDisciplina('Calculo')}
-            checked={() => (prova.disciplina === 'Calculo' ? 'green' : '')}
-          ></CheckIconStyled>
-          <p>Calculo</p>
-        </CheckStuff>
-        <CheckStuff>
-          <CheckIconStyled
-            onClick={() => selectDisciplina('Fisica')}
-            checked={() => (prova.disciplina === 'Fisica' ? 'green' : '')}
-          ></CheckIconStyled>
-          <p>Fisica</p>
-        </CheckStuff>
+        {disciplinasList.map((disciplina) => {
+          return (
+            <CheckContainer
+              nome={`${disciplina.nomeDisciplina}`}
+              func={selectDisciplina}
+              prova={prova}
+              categoria={'disciplinas'}
+            ></CheckContainer>
+          );
+        })}
       </BoxStyled>
       <BoxStyled>
         <summary>
           <p>Professor</p>
           <p>👇🏽</p>
         </summary>
-        <CheckStuff>
-          <CheckIconStyled
-            onClick={() => selectProfessor('Jhon')}
-            checked={() => (prova.professor === 'Jhon' ? 'green' : '')}
-          ></CheckIconStyled>
-          <p>Jhon</p>
-        </CheckStuff>
-        <CheckStuff>
-          <CheckIconStyled
-            onClick={() => selectProfessor('Armando')}
-            checked={() => (prova.professor === 'Armando' ? 'green' : '')}
-          ></CheckIconStyled>
-          <p>Armando</p>
-        </CheckStuff>
+        {professoresList.length !== 0
+          ? professoresList.map((professorObjt) => {
+              return (
+                <CheckContainer
+                  nome={professorObjt.professores.nomeProfessor}
+                  func={selectProfessor}
+                  prova={prova}
+                  categoria={'professores'}
+                ></CheckContainer>
+              );
+            })
+          : ''}
       </BoxStyled>
       <SignUpOrLoginInputStyled
         type="linkProva"
         placeholder="Link da prova"
-        value={prova.link}
-        onChange={(e) => setProva({ ...prova, link: e.target.value })}
+        value={bodyProva.linkProva}
+        onChange={(e) =>
+          setBodyProva({ ...bodyProva, linkProva: e.target.value })
+        }
         required
       />
       <GenericButtonStyled type="submit">Enviar</GenericButtonStyled>
@@ -154,21 +244,4 @@ const BoxStyled = styled.details`
   p {
     font-weight: 300;
   }
-`;
-const CheckStuff = styled.div`
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-
-  button {
-    background-color: none;
-    border: none;
-  }
-`;
-
-const CheckIconStyled = styled(BiCheckCircle)`
-  font-size: 15px;
-  height: 20px;
-  width: 20px;
-  color: ${(props) => props.checked};
 `;

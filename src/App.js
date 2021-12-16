@@ -1,12 +1,11 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import UserContext from "./contexts/UserContext";
-import { useState } from "react";
-import HomePage from "./components/HomePage";
-import NovaProvaPage from "./components/NovaProvaPage";
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import UserContext from './contexts/UserContext';
+import { useState } from 'react';
+import HomePage from './components/HomePage';
+import NovaProvaPage from './components/NovaProvaPage';
 
 function App() {
-  const storedUser = JSON.parse(localStorage.getItem("storedUser"));
+  const storedUser = JSON.parse(localStorage.getItem('storedUser'));
   const [user, setUser] = useState(storedUser);
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -16,6 +15,12 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/inserirprova" exact>
+            <NovaProvaPage />
+          </Route>
+          <Route path="/inserirprovadis" exact>
+            <NovaProvaPage />
+          </Route>
+          <Route path="/inserirprovaprof" exact>
             <NovaProvaPage />
           </Route>
         </Switch>
