@@ -4,6 +4,8 @@ import {
   GenericButtonStyled,
   CheckStuff,
   CheckIconStyled,
+  LoginDataContainerStyled,
+  BoxStyled,
 } from '../shared/sharedStyles/sharedStyles';
 import {
   getDisciplinas,
@@ -76,7 +78,7 @@ export default function NovaProvaPage() {
     let disciplinaEscolhida = disciplinasList.find(
       (disciplina) => disciplina.nomeDisciplina === type,
     );
-
+    console.log(disciplinaEscolhida);
     setBodyProva({ ...bodyProva, disciplinaId: disciplinaEscolhida.id });
 
     const body = {
@@ -99,7 +101,10 @@ export default function NovaProvaPage() {
       (professor) => professor.professores.nomeProfessor === type,
     );
     console.log(professorEscolhido);
-    setBodyProva({ ...bodyProva, professorId: professorEscolhido.id });
+    setBodyProva({
+      ...bodyProva,
+      professorId: professorEscolhido.professores.id,
+    });
   }
 
   return (
@@ -203,15 +208,6 @@ export default function NovaProvaPage() {
   );
 }
 
-const LoginDataContainerStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 100px auto;
-  width: 50%;
-`;
-
 const SignUpOrLoginInputStyled = styled.input`
   width: 100%;
   height: 65px;
@@ -226,22 +222,5 @@ const SignUpOrLoginInputStyled = styled.input`
 
   &::placeholder {
     color: #9f9f9f;
-  }
-`;
-
-const BoxStyled = styled.details`
-  width: 100%;
-  background-color: #e0d1ed9e;
-  color: #4d65a8;
-  padding: 10px 10px;
-  margin-bottom: 10px;
-
-  summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  p {
-    font-weight: 300;
   }
 `;

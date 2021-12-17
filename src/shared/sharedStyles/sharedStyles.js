@@ -42,4 +42,37 @@ const CheckIconStyled = styled(BiCheckCircle)`
   color: ${(props) => props.checked};
 `;
 
-export { GenericButtonStyled, ContainerCenter, CheckIconStyled, CheckStuff };
+const LoginDataContainerStyled = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  width: 50%;
+`;
+
+const BoxStyled = styled.details`
+  width: 100%;
+  background-color: #e0d1ed9e;
+  color: #4d65a8;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  p {
+    font-weight: 300;
+  }
+`;
+
+export {
+  GenericButtonStyled,
+  ContainerCenter,
+  CheckIconStyled,
+  CheckStuff,
+  LoginDataContainerStyled,
+  BoxStyled,
+};

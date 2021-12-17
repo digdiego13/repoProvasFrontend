@@ -16,15 +16,28 @@ function getDisciplinas() {
 }
 
 function getProfessoresDasDisciplinas(body) {
-  console.log(body);
   const promise = axios.post(`${URL}/profdis`, body);
   return promise;
 }
 
 function postProva(body) {
-  console.log(body);
   const promise = axios.post(`${URL}/prova`, body);
   return promise;
 }
 
-export { getDisciplinas, getProfessoresDasDisciplinas, postProva };
+function getProfessores() {
+  const promise = axios.get(`${URL}/professores`);
+  return promise;
+}
+
+function getProvasDoProfessor(body) {
+  const promise = axios.post(`${URL}/provasprofessor`, body);
+  return promise;
+}
+export {
+  getDisciplinas,
+  getProfessoresDasDisciplinas,
+  postProva,
+  getProfessores,
+  getProvasDoProfessor,
+};

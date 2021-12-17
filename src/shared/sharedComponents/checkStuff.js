@@ -1,10 +1,15 @@
 import { CheckIconStyled, CheckStuff } from '../sharedStyles/sharedStyles';
 
-export default function CheckContainer({ nome, prova, func, categoria }) {
+export default function CheckContainer({ nome, prova, func, categoria, link }) {
   return (
     <CheckStuff>
       <CheckIconStyled
-        onClick={() => func(`${nome}`)}
+        onClick={() => {
+          func(`${nome}`);
+          if (categoria === 'prova') {
+            window.location.replace(link);
+          }
+        }}
         checked={() => {
           if (categoria === 'disciplinas') {
             return prova.disciplina === `${nome}` ? 'green' : '';
@@ -12,6 +17,9 @@ export default function CheckContainer({ nome, prova, func, categoria }) {
 
           if (categoria === 'professores') {
             return prova.professor === `${nome}` ? 'green' : '';
+          }
+          if (categoria === 'prova') {
+            return prova.nomeProva === `${nome}` ? 'green' : '';
           }
         }}
       ></CheckIconStyled>

@@ -15,8 +15,8 @@ export default function HomePage() {
           <GenericButtonStyled>Inserir Prova</GenericButtonStyled>
         </Link>
         <div>
-          <Link to={'/inserirprovaprof'}>
-            <GenericButtonStyled>Todas as Provas</GenericButtonStyled>
+          <Link to={'/provasporprofessor'}>
+            <GenericButtonStyled>Provas por professor</GenericButtonStyled>
             <Link to={'/inserirprovadis'}>
               <GenericButtonStyled>Todas as Provas</GenericButtonStyled>
             </Link>

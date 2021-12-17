@@ -3,6 +3,7 @@ import UserContext from './contexts/UserContext';
 import { useState } from 'react';
 import HomePage from './components/HomePage';
 import NovaProvaPage from './components/NovaProvaPage';
+import ProvasPorProfessor from './components/provasPorProfessorPage';
 
 function App() {
   const storedUser = JSON.parse(localStorage.getItem('storedUser'));
@@ -17,8 +18,8 @@ function App() {
           <Route path="/inserirprova" exact>
             <NovaProvaPage />
           </Route>
-          <Route path="/inserirprovadis" exact>
-            <NovaProvaPage />
+          <Route path="/provasporprofessor" exact>
+            <ProvasPorProfessor />
           </Route>
           <Route path="/inserirprovaprof" exact>
             <NovaProvaPage />
