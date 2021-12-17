@@ -34,10 +34,15 @@ function getProvasDoProfessor(body) {
   const promise = axios.post(`${URL}/provasprofessor`, body);
   return promise;
 }
+function getProvaDisciplina(body) {
+  const promise = axios.post(`${URL}/provasdisciplina`, body);
+  return promise;
+}
 export {
   getDisciplinas,
   getProfessoresDasDisciplinas,
   postProva,
   getProfessores,
   getProvasDoProfessor,
+  getProvaDisciplina,
 };
