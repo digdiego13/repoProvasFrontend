@@ -29,7 +29,8 @@ export default function NovaProvaPage() {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log('algo de errado com o servidor');
+        console.log(err.response);
+        alert(err.response.data);
       });
   }, []);
 
@@ -41,7 +42,10 @@ export default function NovaProvaPage() {
         alert('inseriu nova prova');
         history.push('/');
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        console.log(err.response);
+        alert(err.response.data);
+      });
   }
 
   function selectType(type) {
@@ -89,7 +93,10 @@ export default function NovaProvaPage() {
       .then((res) => {
         setProfessoresList(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.response);
+        alert(err.response.data);
+      });
   }
   function selectProfessor(type) {
     if (prova.professor !== '') {

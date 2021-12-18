@@ -25,7 +25,8 @@ export default function ProvasPorProfessor() {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log('algo de errado com o servidor');
+        console.log(err.response);
+        alert(err.response.data);
       });
   }, []);
 
