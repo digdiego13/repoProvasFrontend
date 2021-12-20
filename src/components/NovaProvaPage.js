@@ -26,24 +26,20 @@ export default function NovaProvaPage() {
     getDisciplinas()
       .then((res) => {
         setDisciplinasList(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err.response);
         alert(err.response.data);
       });
   }, []);
 
   function enviarProva(event) {
     event.preventDefault();
-    console.log(bodyProva);
     postProva(bodyProva)
       .then((res) => {
         alert('inseriu nova prova');
         history.push('/');
       })
       .catch((err) => {
-        console.log(err.response);
         alert(err.response.data);
       });
   }
@@ -74,7 +70,6 @@ export default function NovaProvaPage() {
     }
   }
   function selectDisciplina(type) {
-    console.log(prova);
     if (prova.disciplina !== '') {
       setProva({ ...prova, disciplina: '' });
     }
@@ -82,19 +77,18 @@ export default function NovaProvaPage() {
     let disciplinaEscolhida = disciplinasList.find(
       (disciplina) => disciplina.nomeDisciplina === type,
     );
-    console.log(disciplinaEscolhida);
+
     setBodyProva({ ...bodyProva, disciplinaId: disciplinaEscolhida.id });
 
     const body = {
       id: disciplinaEscolhida.id,
     };
-    console.log(body);
+
     getProfessoresDasDisciplinas(body)
       .then((res) => {
         setProfessoresList(res.data);
       })
       .catch((err) => {
-        console.log(err.response);
         alert(err.response.data);
       });
   }
@@ -103,11 +97,11 @@ export default function NovaProvaPage() {
       setProva({ ...prova, professor: '' });
     }
     setProva({ ...prova, professor: type });
-    console.log(professoresList);
+
     let professorEscolhido = professoresList.find(
       (professor) => professor.professores.nomeProfessor === type,
     );
-    console.log(professorEscolhido);
+
     setBodyProva({
       ...bodyProva,
       professorId: professorEscolhido.professores.id,

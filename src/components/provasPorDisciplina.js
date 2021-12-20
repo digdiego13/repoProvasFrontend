@@ -9,29 +9,22 @@ import {
 } from '../shared/sharedStyles/sharedStyles';
 import CheckContainer from '../shared/sharedComponents/checkStuff';
 import { useHistory } from 'react-router';
-import {
-  getDisciplinas,
-  getProfessores,
-  getProvaDisciplina,
-  getProvasDoProfessor,
-} from '../service';
+import { getDisciplinas, getProvaDisciplina } from '../service';
 
 export default function ProvasPorDisciplina() {
   const [disciplinasList, setDisciplinasList] = useState([]);
   const [disciplinaEscolhida, setDisciplinaEscolhida] = useState({});
   const [provas, setProvas] = useState([]);
   const [prova, setProva] = useState({});
-  const history = useHistory();
+
   const periodos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   useEffect(() => {
     getDisciplinas()
       .then((res) => {
         setDisciplinasList(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err.response);
         alert(err.response.data);
       });
   }, []);
@@ -48,12 +41,11 @@ export default function ProvasPorDisciplina() {
     let disciplinaEscolhidaObj = disciplinasList.find(
       (disciplina) => disciplina.nomeDisciplina === type,
     );
-    console.log(disciplinaEscolhida);
+
     let id = disciplinaEscolhidaObj.id;
-    console.log(id);
+
     getProvaDisciplina({ id }).then((res) => {
       setProvas(res.data);
-      console.log(res.data);
     });
   }
 
@@ -62,7 +54,6 @@ export default function ProvasPorDisciplina() {
       setProva({ ...prova, nomeProva: '' });
     }
     setProva({ ...prova, nomeProva: type });
-    console.log(provas);
   }
 
   return (

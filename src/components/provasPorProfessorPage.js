@@ -22,10 +22,8 @@ export default function ProvasPorProfessor() {
     getProfessores()
       .then((res) => {
         setProfessoresList(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err.response);
         alert(err.response.data);
       });
   }, []);
@@ -42,12 +40,11 @@ export default function ProvasPorProfessor() {
     let professorEscolhidoObj = professoresList.find(
       (professor) => professor.nomeProfessor === type,
     );
-    console.log(professorEscolhido);
+
     let id = professorEscolhidoObj.id;
-    console.log(id);
+
     getProvasDoProfessor({ id }).then((res) => {
       setProvas(res.data);
-      console.log(res.data);
     });
   }
 
@@ -56,7 +53,6 @@ export default function ProvasPorProfessor() {
       setProva({ ...prova, nomeProva: '' });
     }
     setProva({ ...prova, nomeProva: type });
-    console.log(provas);
   }
 
   return (
