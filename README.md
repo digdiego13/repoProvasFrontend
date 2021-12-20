@@ -1,19 +1,15 @@
-# Gratibox
+# Repoprovas
 
-Why dont you visit my application ? https://gratibox-front-five.vercel.app/
+Why dont you visit my application ? https://repo-provas-frontend-lemon.vercel.app/
 
-stress, bad mood, anxiety. leave it all behind. Give value to your well-being with Gratibox.
 
-There, you are able to make monthly or weekly subscriptions and earn treats that comfort your day-to-day.
-
-<img src="/public/gratibox.gif" />
 
 ## About
 Some features implemented:
 
-- Login and Sign Up
-- subscription Page
-- Make new subscription (Monthly or weekly).
+- Inserir prova
+- visualizar provas filtrando por disciplinas
+- visualizar provas filtradas por professores
 
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
@@ -42,11 +38,11 @@ npm install npm@latest -g
 ### Installation
 Create a root project folder named gratibox
 ```sh
-mkdir gratibox
+mkdir repoprovas
 ```
 Clone the front-end repo
 ```sh
-git clone https://github.com/digdiego13/gratibox-front.git
+git clone https://github.com/digdiego13/repoProvasFrontend.git
 ```
 Install NPM packages for the front-end repo
 ```sh
@@ -57,8 +53,8 @@ Use NPM start to use the application on your localhost
 ```sh
 npm start
 ```
-(you have to clone the gratibox-backend repository too [https://github.com/digdiego13/gratibox-backend.git], create the database and start the dev application (read the "READ.ME" archive on backend repository)
-Or, you can see the deploy on https://mira-front-brown.vercel.app/
+(you have to clone the gratibox-backend repository too [https://github.com/digdiego13/repoProvasBackend.git], create the database and start the dev application (read the "READ.ME" archive on backend repository)
+
 
 ## cypress tests
 
