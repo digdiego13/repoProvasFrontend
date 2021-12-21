@@ -1,17 +1,19 @@
 # Repoprovas
+Repoprovas é um ambiente que reune as provas antigas de engenharia mecanica da UFRJ.
 
-Why dont you visit my application ? https://repo-provas-frontend-lemon.vercel.app/
+Antes de tudo, rode a aplicação backend localmente como mostra em : https://github.com/digdiego13/repoProvasBackend
+Visite a aplicação em https://repo-provas-frontend-lemon.vercel.app/
 
 
 
-## About
-Some features implemented:
+## Sobre
+Algumas Features implemantadas:
 
 - Inserir prova
 - visualizar provas filtrando por disciplinas
 - visualizar provas filtradas por professores
 
-## Technologies
+## Tecnologias
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
   <img style='margin: 5px;' src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&color=b8679e&logo=styled-components&logoColor=%3a3a3a'>
@@ -24,33 +26,30 @@ The following tools and frameworks were used in the construction of the project:
 </p>
 
 
-## Getting Started
-To get a local copy up and running follow these simple steps.
-
-## Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
+## Começando
+Para uma cópia local, fazer os seguintes passos
 
 ### npm
 ```sh
 npm install npm@latest -g
 ```
-### Installation
-Create a root project folder named repoprovas
+### Instalação
+Crie uma pasta chamada repoprovas
 ```sh
 mkdir repoprovas
 ```
-Clone the front-end repo
+Clone o front-end repo
 ```sh
 git clone https://github.com/digdiego13/repoProvasFrontend.git
 ```
-Install NPM packages for the front-end repo
+Instale o NPM do frontend
 ```sh
 npm install
 ```
 ### Run
-Use NPM start to use the application on your localhost
+Utilize NPM start para rodar a aplicação localmente
 ```sh
 npm start
 ```
-(you have to clone the repoprovas-backend repository too [https://github.com/digdiego13/repoProvasBackend.git], create the database and start the dev application (read the "READ.ME" archive on backend repository)
+(Você deve clonar o projeto backend também em  [https://github.com/digdiego13/repoProvasBackend.git], Crie o banco de dados e rode a aplicação localmente (leia o "READ.ME" da aplicação back)
 
