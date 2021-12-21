@@ -21,7 +21,6 @@ The following tools and frameworks were used in the construction of the project:
   <img style='margin: 5px;' src='https://img.shields.io/badge/react-icons%20-%2320232a.svg?&style=for-the-badge&color=f28dc7&logo=react-icons&logoColor=%2361DAFB'>
   <img style='margin: 5px;' src="https://img.shields.io/badge/dayjs%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
   <img style='margin: 5px;' src="https://img.shields.io/badge/react-modal%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
-  <img style='margin: 5px;' src="https://img.shields.io/badge/cypress%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
 </p>
 
 
@@ -36,7 +35,7 @@ This is an example of how to list things you need to use the software and how to
 npm install npm@latest -g
 ```
 ### Installation
-Create a root project folder named gratibox
+Create a root project folder named repoprovas
 ```sh
 mkdir repoprovas
 ```
@@ -53,13 +52,5 @@ Use NPM start to use the application on your localhost
 ```sh
 npm start
 ```
-(you have to clone the gratibox-backend repository too [https://github.com/digdiego13/repoProvasBackend.git], create the database and start the dev application (read the "READ.ME" archive on backend repository)
+(you have to clone the repoprovas-backend repository too [https://github.com/digdiego13/repoProvasBackend.git], create the database and start the dev application (read the "READ.ME" archive on backend repository)
 
-
-## cypress tests
-
-if you  want to test E2E with cypress, run
-```sh
-npx cypress open
-```
-then there you can run tests.
